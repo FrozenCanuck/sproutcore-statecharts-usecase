@@ -1,3 +1,4 @@
+/*globals App */
 
 App.TimerState = SC.State.extend({
   
@@ -54,7 +55,7 @@ App.TimerState = SC.State.extend({
       
       finishedPomodoro: function() {
         this.gotoState('Timer.Pausing');
-      },
+      }.handleActions('timerFinished'),
       
       exitState: function() {
         App.timerMediator.set('isRunning', false);
@@ -85,7 +86,7 @@ App.TimerState = SC.State.extend({
     
     finishedPausing: function() {
       this.gotoState('Timer.Ready');
-    },
+    }.handleActions('timerFinished'),
     
     cancelPausing: function() {
       this.gotoState('Timer.Ready');
